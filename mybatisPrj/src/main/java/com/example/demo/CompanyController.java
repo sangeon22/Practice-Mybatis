@@ -17,8 +17,9 @@ public class CompanyController {
 	private CompanyMapper companyMapper;
 	
 	@PostMapping("")
-	public int post(@RequestBody Company company) {
-		return companyMapper.insert(company);
+	public Company post(@RequestBody Company company) {
+		companyMapper.insert(company);
+		return company;
 	}
 	
 	@GetMapping("")
