@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,11 +23,18 @@ public interface CompanyMapper {
 	
 	// Reuslts, Result 어노테이션을 통해 자바 내의 Company 엔티티의 객체와 Mysql객체를 매핑해준다.
 	@Select("SELECT * FROM company")
-	@Results({
+	@Results(id = "CompanyMap", value={
 		@Result(property = "name", column = "company_name"),
 		@Result(property = "address", column = "company_address")
 	})
 	List<Company> getAll();
+	
+	
+	// 또 매핑관계를 @Reuslts를 통해 하는 것이 아니라 26줄의 id = "CompanyMap", value로 id로 만든다.
+	// 그 후, 아래 @ResultMap을 통해 재사용
+	@Select("SELECT * FROM company WHERE id=#{id}")
+	@ResultMap("CompanyMap")
+	Company getById(@Param("id") int id);
 	
 	
 }
