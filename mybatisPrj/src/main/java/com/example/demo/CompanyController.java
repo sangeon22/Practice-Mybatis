@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,5 +19,10 @@ public class CompanyController {
 	@PostMapping("")
 	public int post(@RequestBody Company company) {
 		return companyMapper.insert(company);
+	}
+	
+	@GetMapping("")
+	public List<Company> getAll(){
+		return companyMapper.getAll();
 	}
 }
