@@ -2,6 +2,7 @@ package com.example.demo;
 
 public class Employee {
 	private int id;
+	private int companyId;
 	private String name;
 	private String Address;
 	
@@ -27,6 +28,14 @@ public class Employee {
 
 	public void setAddress(String address) {
 		Address = address;
+	}
+
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 	
 	
