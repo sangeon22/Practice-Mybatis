@@ -17,6 +17,9 @@ public class CompanyController {
 	@Autowired
 	private CompanyMapper companyMapper;
 	
+	@Autowired
+	private CompanyService companyService;
+	
 	@PostMapping("")
 	public Company post(@RequestBody Company company) {
 		companyMapper.insert(company);
@@ -25,7 +28,9 @@ public class CompanyController {
 	
 	@GetMapping("")
 	public List<Company> getAll(){
-		return companyMapper.getAll();
+//		기존 companyMapper와 달리 companyService에서 구현한 로직인 getAll을 통해 각 회사에 소속된 사원까지 조회
+//		return companyMapper.getAll();
+		return companyService.getAll();
 	}
 	
 	@GetMapping("/{id}")

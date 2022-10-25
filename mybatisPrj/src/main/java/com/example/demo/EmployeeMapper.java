@@ -34,4 +34,10 @@ public interface EmployeeMapper {
 		@Select("SELECT * FROM employee WHERE id=#{id}")
 		@ResultMap("EmployeeMap")
 		Employee getById(@Param("id") int id);
+
+		// 파라미터로 들어온 회사 Id를 가진 사원목록리스트 조회
+		@Select("SELECT * FROM employee WHERE company_id=#{companyId}")
+		@ResultMap("EmployeeMap")
+		List<Employee> getByCompanyId(@Param("companyId") int companyId);
+		
 }
