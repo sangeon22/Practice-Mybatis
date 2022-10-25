@@ -29,6 +29,7 @@ public class CompanyController {
 	@GetMapping("")
 	public List<Company> getAll(){
 //		기존 companyMapper와 달리 companyService에서 구현한 로직인 getAll을 통해 각 회사에 소속된 사원까지 조회
+//		CompanyMapper에서 EmployeeList를 @Many를 통한 서브쿼리 매핑을 추가해주면 사용가능
 //		return companyMapper.getAll();
 		return companyService.getAll();
 	}

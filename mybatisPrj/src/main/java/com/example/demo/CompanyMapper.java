@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
@@ -25,7 +26,11 @@ public interface CompanyMapper {
 	@Select("SELECT * FROM company")
 	@Results(id = "CompanyMap", value={
 		@Result(property = "name", column = "company_name"),
-		@Result(property = "address", column = "company_address")
+		@Result(property = "address", column = "company_address"),
+		
+		//column에서 직접 매핑하는 것이 아니라, id를 파라미터로 해서 @Many를 통해 API를 호출하고 전달된 id를 employeeList에 매핑
+		@Result(property = "employeeList", column = "id", many=@Many(select="com.example.demo.EmployeeMapper.getByCompanyId"))
+		
 	})
 	List<Company> getAll();
 	
